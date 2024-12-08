@@ -9,14 +9,15 @@ import com.example.LaptopshopApplication.service.UserService;
 @Controller
 public class UserController {
 
-   private UserService userService;
-   
+    private UserService userService;
+
     public UserController(UserService userService) {
-    this.userService = userService;}
+        this.userService = userService;
+    }
 
     @GetMapping("/")
-    public String getHomePage(){
+    public String getHomePage() {
         // return userService.handleHello();
-        return "eric.html"; // Spring Boot will look for eric.html in src/main/resources/static
+        return "hello"; // Spring Boot will look for eric.html in src/main/resources/static
     }
 }
