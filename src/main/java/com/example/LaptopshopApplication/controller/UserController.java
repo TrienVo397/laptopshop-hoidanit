@@ -1,5 +1,7 @@
 package com.example.LaptopshopApplication.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,9 @@ public class UserController {
 
     @GetMapping("/")
     public String getHomePage(Model model) {
-        String test = this.userService.handleHello();
+        List<User> arrayUser = this.userService.getAllUserByEmail("1@gmail.com");
+        System.out.println(arrayUser);
+
         model.addAttribute("trien", "test");
         model.addAttribute("hoidanit", "test");
         return "hello";
