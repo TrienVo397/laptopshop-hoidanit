@@ -39,16 +39,24 @@ public class UserController {
     }
 
     @GetMapping("/admin/user")
+    public String getUserTable(Model model) {
+        List<User> allUsers = this.userService.getAllUser();
+        System.out.println(">>> Check users: " + allUsers);
+        model.addAttribute("users1", allUsers);
+        return "admin/user/userTable";
+    }
+
+    @GetMapping("/admin/user/create")
     public String getUserForm(Model model) {
         model.addAttribute("newUser", new User());
         return "admin/user/create";
     }
 
-    @PostMapping("/admin/user/create1")
-    public String createUser(Model model, @ModelAttribute User trien) {
-        System.out.println("run here " + trien);
-        this.userService.handleSaveUser(trien);
-        return "hello";
+    @PostMapping("/admin/user/create")
+    public String createUser(Model model, @ModelAttribute User newUser) {
+        System.out.println("run here " + newUser);
+        this.userService.handleSaveUser(newUser);
+        return "redirect:/admin/user";
     }
 
 }

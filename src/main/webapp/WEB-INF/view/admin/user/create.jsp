@@ -19,7 +19,7 @@
             <body>
                 <div class="container mt-5">
                     <div class="row">
-                        <form:form class="col col-md-9 mx-auto" method="post" action="/admin/user/create1"
+                        <form:form class="col col-md-9 mx-auto" method="post" action="/admin/user/create"
                             modelAttribute="newUser">
 
                             <h1>Create a user</h1>
