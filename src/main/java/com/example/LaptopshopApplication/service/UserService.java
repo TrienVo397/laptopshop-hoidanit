@@ -36,4 +36,12 @@ public class UserService {
         System.out.println(newUser);
         return newUser;
     }
+
+    public void handleDeleteUser(long id){
+        this.userRepository.deleteById(id);
+    }
+
+    public User getUserById(long id){
+        return this.userRepository.findById(id);
+    }
 }

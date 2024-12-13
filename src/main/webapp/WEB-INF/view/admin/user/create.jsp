@@ -24,6 +24,10 @@
 
                             <h1>Create a user</h1>
                             <hr style="background-color: aqua;">
+                            <div class="form-group my-3" style="display: none;">
+                                <label for="id">Id</label>
+                                <form:input type="text" class="form-control" path="id" name="id" />
+                            </div>
                             <div class="form-group my-3">
                                 <label for="exampleInputEmail1">Email address</label>
                                 <form:input type="email" class="form-control" path="email"
