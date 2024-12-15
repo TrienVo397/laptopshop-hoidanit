@@ -1,13 +1,20 @@
 package com.example.LaptopshopApplication.domain;
 
+import java.util.List;
+
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 @Entity 
-@Table(name = "nguoi_dung")
+@Table(name = "users")
 public class User {
     
     @Id
@@ -18,10 +25,26 @@ public class User {
     private String fullName;
     private String address;
     private String phone;
+    private String avatar;
 
+    
+    @ManyToOne
+    @JoinColumn(name="role_id")
+    private Role role;
+    
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+    
     // No-argument constructor
- 
+    
+    
+    public String getAvatar() {
+        return avatar;
+    }
 
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
     // Getters and setters
     public long getId() {
         return id;
@@ -74,6 +97,8 @@ public class User {
     @Override
     public String toString() {
         return "User [id=" + id + ", password=" + password + ", email=" + email + ", fullName=" + fullName
-                + ", address=" + address + ", phone=" + phone + "]";
+                + ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + "]";
     }
+
+   
 }
