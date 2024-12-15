@@ -11,7 +11,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
             <meta name="author" content="" />
-            <title>Dashboard - SB Admin</title>
+            <title>Create User</title>
             <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -26,12 +26,29 @@
                 <div id="layoutSidenav_content">
                     <main>
                         <div class="container-fluid px-4">
-                            <h1 class="mt-4">Manage Products</h1>
+                            <h1 class="mt-4">Manage Users</h1>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item active"><a href="/admin"></a></li>
-                                <li class="breadcrumb-item active">Products</li>
+                                <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Users</li>
                             </ol>
-                           <div>Table Product</div>
+                        </div>
+                        <div class="container mt-5">
+                            <h1>Delete User ${currentUser.id}</h1>
+                            <hr>
+        
+                            <form:form method = "post" action="/admin/user/delete" modelAttribute = "currentUser">
+                                <div class="form-group my-3" style="display: none;">
+                                    <label for="id">Id</label>
+                                    <form:input type="text" class="form-control" path="id" name="id" value ="${currentUser.id}"/>
+                                </div>    
+                                    <label for="email">Email</label>
+                                    <form:input type="text" class="form-control" path="" name="email" value ="${currentUser.email}"/>
+                                    <form:input type="text" class="form-control" path="fullName" name="" />
+                                    
+                                   
+                            <button class="btn btn-danger">Delete</button></form:form>
+                            
+                            
                         </div>
                     </main>
                     <jsp:include page="../layout/footer.jsp"></jsp:include>

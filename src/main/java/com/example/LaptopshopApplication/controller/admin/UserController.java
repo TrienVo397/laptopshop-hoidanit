@@ -1,4 +1,4 @@
-package com.example.LaptopshopApplication.controller;
+package com.example.LaptopshopApplication.controller.admin;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class UserController {
         List<User> allUsers = this.userService.getAllUser(); //get the data
         // System.out.println(">>> Check users: " + allUsers);
         model.addAttribute("users1", allUsers);
-        return "admin/user/userTable"; // throw the data to the view
+        return "admin/user/show"; // throw the data to the view
     }
 
     // get the user form
@@ -67,7 +67,7 @@ public class UserController {
     public String getUserDetail(Model model, @PathVariable long id) {
         User userById = this.userService.getUserById(id);
         model.addAttribute("userById", userById);
-        return "admin/user/userDetailPage";
+        return "admin/user/detail";
     }
 
     // get the user update page
@@ -75,7 +75,7 @@ public class UserController {
     public String getUpdatePage(Model model, @PathVariable long id) {
         User currentUser = this.userService.getUserById(id);
         model.addAttribute("currentUser", currentUser);
-        return "admin/user/userUpdatePage";
+        return "admin/user/update";
     }
 
     @PostMapping("/admin/user/update")
@@ -94,7 +94,7 @@ public class UserController {
     public String getDeletePage(Model model, @PathVariable long id) {
         User currentUser = this.userService.getUserById(id);
         model.addAttribute("currentUser", currentUser);
-        return "admin/user/userDeletePage";
+        return "admin/user/delete";
     }
     
     //delete user

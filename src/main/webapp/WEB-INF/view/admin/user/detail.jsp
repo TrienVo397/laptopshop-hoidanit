@@ -11,7 +11,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
             <meta name="description" content="" />
             <meta name="author" content="" />
-            <title>Dashboard - SB Admin</title>
+            <title>Create User</title>
             <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
             <link href="/css/styles.css" rel="stylesheet" />
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -28,10 +28,33 @@
                         <div class="container-fluid px-4">
                             <h1 class="mt-4">Manage Products</h1>
                             <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item active"><a href="/admin"></a></li>
-                                <li class="breadcrumb-item active">Products</li>
+                                <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Users</li>
                             </ol>
-                           <div>Table Product</div>
+                        </div>
+                        <div class="container mt-5">
+                            <a href="/admin/user" ><button class="btn btn-primary mb-3">Back</button></a>
+                            <h1>User Detail Page</h1>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Full Name</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">${userById.id}</th>
+                                        <td>${userById.email}</td>
+                                        <td>${userById.fullName}</td>
+                                        <td>${userById.phone}</td>
+                                        <td>${userById.address}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </main>
                     <jsp:include page="../layout/footer.jsp"></jsp:include>
