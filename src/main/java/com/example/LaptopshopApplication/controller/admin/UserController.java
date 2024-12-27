@@ -36,16 +36,16 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/")
-    // get the home page
-    public String getHomePage(Model model) {
-        List<User> arrayUser = this.userService.getAllUserByEmail("1@gmail.com");
-        System.out.println(arrayUser);
+    // @GetMapping("/")
+    // // get the home page
+    // public String getHomePage(Model model) {
+    //     List<User> arrayUser = this.userService.getAllUserByEmail("1@gmail.com");
+    //     System.out.println(arrayUser);
 
-        model.addAttribute("trien", "test");
-        model.addAttribute("hoidanit", "test");
-        return "hello"; // return the view name to be rendered
-    }
+    //     model.addAttribute("trien", "test");
+    //     model.addAttribute("hoidanit", "test");
+    //     return "hello"; // return the view name to be rendered
+    // }
 
     // get the user table
     @GetMapping("/admin/user")
@@ -67,7 +67,7 @@ public class UserController {
     @PostMapping("/admin/user/create")
     public String createUser(Model model, @ModelAttribute("newUser") User newUser,
             @RequestParam("hoidanitFile") MultipartFile file) {
-        // System.out.println("run here " + newUser);
+        System.out.println("Create new user ");
         // this.userService.handleSaveUser(newUser);
         // relative path: absolute path trả ra thư mục webapp
         String avatar = this.uploadService.handleUploadFile(file, "avatar");
@@ -97,12 +97,16 @@ public class UserController {
     }
 
     @PostMapping("/admin/user/update")
-    public String UpdateUser(Model model, @ModelAttribute User currentUser) {
+    public String UpdateUser(Model model, @ModelAttribute User currentUser,
+            @RequestParam("hoidanitFile") MultipartFile file) {
         User updateUser = this.userService.getUserById(currentUser.getId());
-        System.out.println("Run here");
+        String avatar = this.uploadService.handleUploadFile(file, "avatar");
+        System.out.println("Update user ");
         updateUser.setAddress(currentUser.getAddress());
         updateUser.setPhone(currentUser.getPhone());
         updateUser.setFullName(currentUser.getFullName());
+        updateUser.setRole(this.userService.getRoleByName(currentUser.getRole().getName()));
+        updateUser.setAvatar(avatar);
         this.userService.handleSaveUser(updateUser);
         return "redirect:/admin/user";
     }

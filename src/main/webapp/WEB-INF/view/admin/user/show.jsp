@@ -39,6 +39,7 @@
                                         <th scope="col">Id</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Full name</th>
+                                        <th scope="col">Role</th>
                                         <th scope="col">Action
                                         </th>
                                     </tr>
@@ -49,6 +50,7 @@
                                             <th scope="row">${user.id}</th>
                                             <td>${user.email}</td>
                                             <td>${user.fullName}</td>
+                                            <td>${user.role.name}</td>
                                             <td>
                                                 <a href="/admin/user/${user.id}"><button class="btn btn-success">View</button></a>
                                                 <a href="/admin/user/update/${user.id}"><button class="btn btn-warning">Update</button></a>

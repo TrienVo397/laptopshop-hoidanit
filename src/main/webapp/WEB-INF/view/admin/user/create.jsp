@@ -17,7 +17,7 @@
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
                 <script>
-                    $(document).ready(() => {
+                    $(document).ready(() => { // tp preview picture
                         const avatarFile = $("#avatarFile");
                         avatarFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
@@ -94,7 +94,6 @@
                                             <input class="form-control" type="file" id="avatarFile"
                                                 accept=".png, .jpg, .jpeg" name="hoidanitFile"
                                                 />
-
                                         </div>
 
                                         <div class="col-12 mb-3">
