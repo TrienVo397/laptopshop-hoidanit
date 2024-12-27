@@ -19,29 +19,29 @@ public class UserService {
         return "Hello from Service";
     }
 
-    public List<User> getAllUser(){
+    public List<User> getAllUser() {
         return this.userRepository.findAll();
     }
 
-    public List<User> getAllUserByEmail(String email){
+    public List<User> getAllUserByEmail(String email) {
         return this.userRepository.findByEmail(email);
     }
 
-    public List<User> getAllUserByEmailAndAddress(String email, String address){
+    public List<User> getAllUserByEmailAndAddress(String email, String address) {
         return this.userRepository.findByEmailAndAddress(email, address);
     }
 
     public User handleSaveUser(User user) {
-        User newUser = this.userRepository.save(user);
-        System.out.println(newUser);
-        return newUser;
+        User hoidanit = this.userRepository.save(user);
+        System.out.println(hoidanit);
+        return hoidanit;
     }
 
-    public void handleDeleteUser(long id){
+    public void handleDeleteUser(long id) {
         this.userRepository.deleteById(id);
     }
 
-    public User getUserById(long id){
+    public User getUserById(long id) {
         return this.userRepository.findById(id);
     }
 }
