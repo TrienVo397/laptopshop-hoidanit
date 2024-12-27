@@ -6,20 +6,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.LaptopshopApplication.domain.User;
-import com.example.LaptopshopApplication.repository.UserRepository;
 import com.example.LaptopshopApplication.service.UploadService;
 import com.example.LaptopshopApplication.service.UserService;
-
-import jakarta.servlet.ServletContext;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -29,10 +27,13 @@ public class UserController {
 
     private final UserService userService;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService , UploadService uploadService) {
+    public UserController(UserService userService, UploadService uploadService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/")
@@ -68,8 +69,13 @@ public class UserController {
             @RequestParam("hoidanitFile") MultipartFile file) {
         // System.out.println("run here " + newUser);
         // this.userService.handleSaveUser(newUser);
-        //relative path: absolute path trả ra thư mục webapp
+        // relative path: absolute path trả ra thư mục webapp
         String avatar = this.uploadService.handleUploadFile(file, "avatar");
+        String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
+        newUser.setPassword(hashPassword);
+        newUser.setAvatar(avatar);
+        newUser.setRole(this.userService.getRoleByName(newUser.getRole().getName()));
+        this.userService.handleSaveUser(newUser);
 
         return "redirect:/admin/user";
     }
